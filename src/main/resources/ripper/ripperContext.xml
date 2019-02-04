@@ -8,6 +8,7 @@
     <!--<context:component-scan base-package="com.chaika.spring"/>-->
     <!--<bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"/>-->
 
+    <bean class="com.chaika.spring.ripper.beanpostprocessor.ProfilingHandlerBeanPostProcessor"/>
     <bean class="com.chaika.spring.ripper.beanpostprocessor.InjectRandomIntAnnotationBeanPostProcessor"/>
 
     <bean class="com.chaika.spring.ripper.components.TerminatorQuoter" id="terminatorQuoter">

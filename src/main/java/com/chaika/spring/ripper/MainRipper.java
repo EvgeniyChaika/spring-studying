@@ -1,6 +1,6 @@
 package com.chaika.spring.ripper;
 
-import com.chaika.spring.ripper.components.TerminatorQuoter;
+import com.chaika.spring.ripper.interfaces.Quoter;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
@@ -8,10 +8,13 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class MainRipper {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         try (ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("ripper/ripperContext.xml")) {
             //This is example. Don't get bean by class implementation!
-            context.getBean(TerminatorQuoter.class).sayQuote();
+            while (true) {
+                Thread.sleep(100);
+                context.getBean(Quoter.class).sayQuote();
+            }
         }
     }
 }

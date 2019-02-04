@@ -1,6 +1,7 @@
 package com.chaika.spring.ripper.components;
 
 import com.chaika.spring.ripper.annotations.InjectRandomInt;
+import com.chaika.spring.ripper.annotations.Profiling;
 import com.chaika.spring.ripper.interfaces.Quoter;
 
 import javax.annotation.PostConstruct;
@@ -8,6 +9,7 @@ import javax.annotation.PostConstruct;
 /**
  * Created by echaika on 04.02.2019
  */
+@Profiling
 public class TerminatorQuoter implements Quoter {
 
     @InjectRandomInt(min = 2, max = 7)
@@ -16,16 +18,16 @@ public class TerminatorQuoter implements Quoter {
     private String message;
 
     public TerminatorQuoter() {
-        System.out.println("Phase 1 - constructor " + repeat);
+        System.out.println("Phase 1 - constructor, repeat " + repeat);
     }
 
     @PostConstruct
     void initMethod() {
-        System.out.println("Phase 2 - init method " + repeat);
+        System.out.println("Phase 2 - init method, repeat - " + repeat);
     }
 
     @Override
-    public void sayQuote() {
+    public final void sayQuote() {
         for (int i = 0; i < repeat; i++) {
             System.out.println("message = " + message);
         }
