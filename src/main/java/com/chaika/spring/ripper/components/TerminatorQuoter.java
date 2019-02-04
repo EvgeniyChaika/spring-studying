@@ -1,5 +1,6 @@
 package com.chaika.spring.ripper.components;
 
+import com.chaika.spring.ripper.annotations.InjectRandomInt;
 import com.chaika.spring.ripper.interfaces.Quoter;
 
 /**
@@ -7,11 +8,16 @@ import com.chaika.spring.ripper.interfaces.Quoter;
  */
 public class TerminatorQuoter implements Quoter {
 
+    @InjectRandomInt(min = 2, max = 7)
+    private int repeat;
+
     private String message;
 
     @Override
     public void sayQuote() {
-        System.out.println("message = " + message);
+        for (int i = 0; i < repeat; i++) {
+            System.out.println("message = " + message);
+        }
     }
 
     public void setMessage(String message) {
