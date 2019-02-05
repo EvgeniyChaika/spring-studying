@@ -10,6 +10,7 @@
 
     <bean class="com.chaika.spring.ripper.beanpostprocessor.ProfilingHandlerBeanPostProcessor"/>
     <bean class="com.chaika.spring.ripper.beanpostprocessor.InjectRandomIntAnnotationBeanPostProcessor"/>
+    <bean class="com.chaika.spring.ripper.listeners.PostProxyInvokerContextListener"/>
 
     <bean class="com.chaika.spring.ripper.components.TerminatorQuoter" id="terminatorQuoter">
         <property name="message" value="I'll be back"/>

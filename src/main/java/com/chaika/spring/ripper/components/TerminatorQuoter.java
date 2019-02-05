@@ -1,6 +1,7 @@
 package com.chaika.spring.ripper.components;
 
 import com.chaika.spring.ripper.annotations.InjectRandomInt;
+import com.chaika.spring.ripper.annotations.PostProxy;
 import com.chaika.spring.ripper.annotations.Profiling;
 import com.chaika.spring.ripper.interfaces.Quoter;
 
@@ -27,7 +28,9 @@ public class TerminatorQuoter implements Quoter {
     }
 
     @Override
+    @PostProxy
     public final void sayQuote() {
+        System.out.println("Phase 3 - method, repeat - " + repeat);
         for (int i = 0; i < repeat; i++) {
             System.out.println("message = " + message);
         }
