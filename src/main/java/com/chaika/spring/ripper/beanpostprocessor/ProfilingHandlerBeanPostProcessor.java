@@ -2,11 +2,13 @@ package com.chaika.spring.ripper.beanpostprocessor;
 
 import com.chaika.spring.ripper.annotations.Profiling;
 import com.chaika.spring.ripper.profiling.controller.ProfilingController;
+import com.chaika.spring.ripper.profiling.interfaces.ProfilingControllerMBean;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 
 import javax.management.MBeanServer;
 import javax.management.ObjectName;
+import javax.management.StandardMBean;
 import java.lang.management.ManagementFactory;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -24,7 +26,8 @@ public class ProfilingHandlerBeanPostProcessor implements BeanPostProcessor {
 
     public ProfilingHandlerBeanPostProcessor() throws Exception {
         MBeanServer mBeanServer = ManagementFactory.getPlatformMBeanServer();
-        mBeanServer.registerMBean(controller, new ObjectName("profiling", "name", "controller"));
+        StandardMBean mBean = new StandardMBean(controller, ProfilingControllerMBean.class);
+        mBeanServer.registerMBean(mBean, new ObjectName("profiling", "name", "controller"));
     }
 
     @Override
