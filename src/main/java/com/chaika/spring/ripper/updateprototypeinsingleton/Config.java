@@ -14,7 +14,11 @@ import java.util.Random;
 public class Config {
 
     @Bean
-    @Scope(BeanDefinition.SCOPE_PROTOTYPE)
+    //2)
+    /**
+     * The second approach, but when we call the bean, it will be created every time.
+     */
+    @Scope(value = BeanDefinition.SCOPE_PROTOTYPE, proxyMode = ScopedProxyMode.TARGET_CLASS)
     public Color color() {
         Random random = new Random();
         return new Color(random.nextInt(255), random.nextInt(255), random.nextInt(255));

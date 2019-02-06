@@ -14,17 +14,19 @@ import java.util.Random;
 @Component
 public class ColorFrame extends JFrame {
 
-//    private Color color;
+    private Color color;
 
-    /**
-     * Don't do like this! Bean depends on root context, but needs only Color.class
-     */
-    private ApplicationContext applicationContext;
+//    1)bad approach
+//    /**
+//     * Don't do like this! Bean depends on root context(Spring logic), but needs only changing Color.class(business logic)
+//     */
+//    private ApplicationContext applicationContext;
 
     @Autowired
     public ColorFrame(Color color, ApplicationContext applicationContext) throws HeadlessException {
-//        this.color = color;
-        this.applicationContext = applicationContext;
+        this.color = color;
+//      1)bad approach
+//      this.applicationContext = applicationContext;
         setSize(200, 200);
         setVisible(true);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -34,8 +36,9 @@ public class ColorFrame extends JFrame {
     public void showOnRandomPlace() {
         Random random = new Random();
         setLocation(random.nextInt(1200), random.nextInt(700));
-//        getContentPane().setBackground(color);
-        getContentPane().setBackground(applicationContext.getBean(Color.class));
+        getContentPane().setBackground(color);
+//        1)bad approach
+//        getContentPane().setBackground(applicationContext.getBean(Color.class));
         repaint();
     }
 }
