@@ -1,9 +1,7 @@
 package com.chaika.spring.ripper.updateprototypeinsingleton;
 
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.beans.factory.config.BeanDefinition;
+import org.springframework.context.annotation.*;
 
 import java.awt.*;
 import java.util.Random;
@@ -16,6 +14,7 @@ import java.util.Random;
 public class Config {
 
     @Bean
+    @Scope(BeanDefinition.SCOPE_PROTOTYPE)
     public Color color() {
         Random random = new Random();
         return new Color(random.nextInt(255), random.nextInt(255), random.nextInt(255));
