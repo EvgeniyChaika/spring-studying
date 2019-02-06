@@ -48,4 +48,12 @@ public class TerminatorQuoter implements Quoter {
     public void setRepeat(int repeat) {
         this.repeat = repeat;
     }
+
+    @Override
+    public String toString() {
+        return "TerminatorQuoter{" +
+                "repeat=" + repeat +
+                ", message='" + message + '\'' +
+                '}';
+    }
 }
