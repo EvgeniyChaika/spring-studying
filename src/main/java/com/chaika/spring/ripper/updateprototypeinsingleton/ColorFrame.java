@@ -1,7 +1,6 @@
 package com.chaika.spring.ripper.updateprototypeinsingleton;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
 import javax.swing.*;
@@ -12,9 +11,9 @@ import java.util.Random;
  * Created by echaika on 06.02.2019
  */
 @Component
-public class ColorFrame extends JFrame {
-
-    private Color color;
+public abstract class ColorFrame extends JFrame {
+//    2)
+//    private Color color;
 
 //    1)bad approach
 //    /**
@@ -23,8 +22,9 @@ public class ColorFrame extends JFrame {
 //    private ApplicationContext applicationContext;
 
     @Autowired
-    public ColorFrame(Color color, ApplicationContext applicationContext) throws HeadlessException {
-        this.color = color;
+    public ColorFrame() throws HeadlessException {
+//    public ColorFrame(Color color, ApplicationContext applicationContext) throws HeadlessException {
+//        this.color = color;
 //      1)bad approach
 //      this.applicationContext = applicationContext;
         setSize(200, 200);
@@ -36,9 +36,14 @@ public class ColorFrame extends JFrame {
     public void showOnRandomPlace() {
         Random random = new Random();
         setLocation(random.nextInt(1200), random.nextInt(700));
-        getContentPane().setBackground(color);
+        getContentPane().setBackground(getColor());
+//        2)
+//        getContentPane().setBackground(color);
 //        1)bad approach
 //        getContentPane().setBackground(applicationContext.getBean(Color.class));
         repaint();
     }
+
+    //  3)best approach
+    protected abstract Color getColor();
 }
