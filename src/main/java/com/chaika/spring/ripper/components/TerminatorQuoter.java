@@ -41,4 +41,11 @@ public class TerminatorQuoter implements Quoter {
     public void setMessage(String message) {
         this.message = message;
     }
+
+    /**
+     * For {@link com.chaika.spring.ripper.context.PropertyFileApplicationContext}
+     */
+    public void setRepeat(int repeat) {
+        this.repeat = repeat;
+    }
 }
