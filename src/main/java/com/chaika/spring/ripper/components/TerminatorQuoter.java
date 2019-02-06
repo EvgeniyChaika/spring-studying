@@ -1,5 +1,6 @@
 package com.chaika.spring.ripper.components;
 
+import com.chaika.spring.ripper.annotations.DeprecatedClass;
 import com.chaika.spring.ripper.annotations.InjectRandomInt;
 import com.chaika.spring.ripper.annotations.PostProxy;
 import com.chaika.spring.ripper.annotations.Profiling;
@@ -11,6 +12,7 @@ import javax.annotation.PostConstruct;
  * Created by echaika on 04.02.2019
  */
 @Profiling
+@DeprecatedClass(newImpl = T1000.class)
 public class TerminatorQuoter implements Quoter {
 
     @InjectRandomInt(min = 2, max = 7)
@@ -29,7 +31,7 @@ public class TerminatorQuoter implements Quoter {
 
     @Override
     @PostProxy
-    public final void sayQuote() {
+    public void sayQuote() {
         System.out.println("Phase 3 - method, repeat - " + repeat);
         for (int i = 0; i < repeat; i++) {
             System.out.println("message = " + message);
